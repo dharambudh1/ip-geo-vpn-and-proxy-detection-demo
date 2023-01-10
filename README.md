@@ -1,4 +1,4 @@
-# ipify_demo
+# IP, Geo, VPN & Proxy Detection
 
 A new Flutter project.
 
