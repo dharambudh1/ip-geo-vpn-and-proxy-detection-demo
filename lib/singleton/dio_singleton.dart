@@ -1,6 +1,6 @@
 import "package:dio/dio.dart";
-import "package:ipify_demo/model/error_response.dart";
-import "package:ipify_demo/model/ip_geolocation_response.dart";
+import "package:ipify_demo/model/vpn_api_error_response.dart";
+import "package:ipify_demo/model/vpn_api_success_response.dart";
 import "package:pretty_dio_logger/pretty_dio_logger.dart";
 
 class DioSingleton {
@@ -13,30 +13,24 @@ class DioSingleton {
   static final DioSingleton _singleton = DioSingleton._internal();
 
   final Dio _dio = Dio();
-  final String _baseURL = "https://geo.ipify.org/api/";
-  final String _baseVer = "v2/";
-  final String _baseEnd = "country,city,vpn";
-  final String _apiKey = "at_pIV9DaKc0SF1pGllXyOszADp4S76M";
 
   Future<void> addPrettyDioLoggerInterceptor() {
-    _dio.interceptors.add(
-      PrettyDioLogger(),
-    );
+    _dio.interceptors.add(PrettyDioLogger());
     return Future<void>.value();
   }
 
-  Future<IPGeolocationResponse> extractInformationFromIPAPI({
+  final String _baseURL = "https://avpnapi.io/api/";
+  final String _key = "40f6cdcbaf9b4c139d4a276b9788dee6";
+
+  Future<VPNAPISuccessResponse> extractInformationFromIPAPI({
     required void Function(String) errorMessageFunction,
   }) async {
-    IPGeolocationResponse ipResponse = IPGeolocationResponse();
-    Response<dynamic> response = Response<dynamic>(
-      requestOptions: RequestOptions(path: ""),
-    );
+    VPNAPISuccessResponse vpnAPISuccessResponse = VPNAPISuccessResponse();
     try {
-      response = await _dio.get(
-        _baseURL + _baseVer + _baseEnd,
+      final Response<dynamic> response = await _dio.get(
+        _baseURL,
         queryParameters: <String, dynamic>{
-          "apiKey": _apiKey,
+          "key": _key,
         },
         options: Options(
           headers: <String, dynamic>{
@@ -44,11 +38,12 @@ class DioSingleton {
           },
         ),
       );
-      ipResponse = IPGeolocationResponse.fromJson(response.data);
+      vpnAPISuccessResponse = VPNAPISuccessResponse.fromJson(response.data);
     } on DioError catch (error) {
-      final ErrorResponse errRes = ErrorResponse.fromJson(error.response?.data);
-      errorMessageFunction(errRes.messages ?? "Unknown Error");
+      VPNAPIErrorResponse vpnAPIErrorResponse = VPNAPIErrorResponse();
+      vpnAPIErrorResponse = VPNAPIErrorResponse.fromJson(error.response?.data);
+      errorMessageFunction(vpnAPIErrorResponse.message ?? "Unknown Error");
     }
-    return Future<IPGeolocationResponse>.value(ipResponse);
+    return Future<VPNAPISuccessResponse>.value(vpnAPISuccessResponse);
   }
 }

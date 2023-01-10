@@ -5,7 +5,7 @@ import "package:after_layout/after_layout.dart";
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter_json_view/flutter_json_view.dart";
-import "package:ipify_demo/model/ip_geolocation_response.dart";
+import "package:ipify_demo/model/vpn_api_success_response.dart";
 import "package:ipify_demo/singleton/dio_singleton.dart";
 
 class HomeScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomePageState extends State<HomeScreen>
     with AfterLayoutMixin<HomeScreen> {
-  IPGeolocationResponse _ipResponse = IPGeolocationResponse();
+  VPNAPISuccessResponse _vpnAPISuccessResponse = VPNAPISuccessResponse();
   String _errorMessage = "";
 
   @override
@@ -36,13 +36,13 @@ class _HomePageState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("IP Geolocation Demo"),
+        title: const Text("IP, Geo, VPN & Proxy Detection"),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           _errorMessage = "";
-          _ipResponse = IPGeolocationResponse();
+          _vpnAPISuccessResponse = VPNAPISuccessResponse();
           setState(() {});
           await makeExtractInformationFromIPAPIRequest();
         },
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomeScreen>
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Center(
-            child: _errorMessage.isEmpty && _ipResponse.ip == null
+            child: _errorMessage.isEmpty && _vpnAPISuccessResponse.ip == null
                 ? Column(
                     children: <Widget>[
                       const Spacer(),
@@ -63,10 +63,10 @@ class _HomePageState extends State<HomeScreen>
                       const Spacer(),
                     ],
                   )
-                : _errorMessage.isNotEmpty && _ipResponse.ip == null
+                : _errorMessage.isNotEmpty && _vpnAPISuccessResponse.ip == null
                     ? Text(_errorMessage)
                     : JsonView.map(
-                        _ipResponse.toJson(),
+                        _vpnAPISuccessResponse.toJson(),
                         theme: JsonViewTheme(
                           defaultTextStyle:
                               Theme.of(context).textTheme.labelSmall!,
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomeScreen>
   }
 
   Future<void> makeExtractInformationFromIPAPIRequest() async {
-    _ipResponse = await DioSingleton().extractInformationFromIPAPI(
+    _vpnAPISuccessResponse = await DioSingleton().extractInformationFromIPAPI(
       errorMessageFunction: (String value) {
         _errorMessage = value;
       },

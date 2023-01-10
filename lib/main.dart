@@ -2,15 +2,10 @@ import "package:flutter/material.dart";
 import "package:ipify_demo/screen/home_screen.dart";
 import "package:ipify_demo/singleton/dio_singleton.dart";
 
-/*
-      Account credential:
-      Website: https://geo.ipify.org/login
+/*    Account credential:
+      Website: https://vpnapi.io/
       Username: temp.dharam.001@gmail.com
-      Password: D*******3
-      Docs: https://geo.ipify.org/docs
-      API Type: 3
-      API Features: Country + City + VPN detection
-*/
+      Password: D*******3    */
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "IP Geolocation Demo",
+      title: "IP, Geo, VPN & Proxy Detection",
       theme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.light,

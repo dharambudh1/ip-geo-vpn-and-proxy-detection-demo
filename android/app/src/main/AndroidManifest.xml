@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ipify_demo">
+    package="com.example.vpnapi">
    <application
-        android:label="ipify_demo"
+        android:label="VPN API Demo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

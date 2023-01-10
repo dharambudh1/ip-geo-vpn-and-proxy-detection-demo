@@ -1,4 +1,4 @@
-package com.example.ipify_demo
+package com.example.vpnapi
 
 import io.flutter.embedding.android.FlutterActivity
 
