@@ -1,6 +1,6 @@
 import "package:dio/dio.dart";
-import "package:ipify_demo/model/vpn_api_error_response.dart";
-import "package:ipify_demo/model/vpn_api_success_response.dart";
+import "package:ip_geo_vpn_and_proxy_detection_demo/model/vpn_api_error_response.dart";
+import "package:ip_geo_vpn_and_proxy_detection_demo/model/vpn_api_success_response.dart";
 import "package:pretty_dio_logger/pretty_dio_logger.dart";
 
 class DioSingleton {
@@ -19,7 +19,7 @@ class DioSingleton {
     return Future<void>.value();
   }
 
-  final String _baseURL = "https://avpnapi.io/api/";
+  final String _baseURL = "https://vpnapi.io/api/";
   final String _key = "40f6cdcbaf9b4c139d4a276b9788dee6";
 
   Future<VPNAPISuccessResponse> extractInformationFromIPAPI({

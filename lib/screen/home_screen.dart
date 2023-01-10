@@ -5,8 +5,8 @@ import "package:after_layout/after_layout.dart";
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter_json_view/flutter_json_view.dart";
-import "package:ipify_demo/model/vpn_api_success_response.dart";
-import "package:ipify_demo/singleton/dio_singleton.dart";
+import "package:ip_geo_vpn_and_proxy_detection_demo/model/vpn_api_success_response.dart";
+import "package:ip_geo_vpn_and_proxy_detection_demo/singleton/dio_singleton.dart";
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

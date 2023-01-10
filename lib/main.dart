@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
-import "package:ipify_demo/screen/home_screen.dart";
-import "package:ipify_demo/singleton/dio_singleton.dart";
+import "package:ip_geo_vpn_and_proxy_detection_demo/screen/home_screen.dart";
+import "package:ip_geo_vpn_and_proxy_detection_demo/singleton/dio_singleton.dart";
 
 /*    Account credential:
       Website: https://vpnapi.io/

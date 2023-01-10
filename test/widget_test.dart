@@ -8,7 +8,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 
-import "package:ipify_demo/main.dart";
+import "package:ip_geo_vpn_and_proxy_detection_demo/main.dart";
 
 void main() {
   testWidgets("Counter increments smoke test", (WidgetTester tester) async {

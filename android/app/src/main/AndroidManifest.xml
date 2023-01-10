@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.vpnapi">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.vpnapi">
    <application
         android:label="VPN API Demo"
         android:name="${applicationName}"
